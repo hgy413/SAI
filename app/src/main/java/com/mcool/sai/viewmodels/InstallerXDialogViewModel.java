@@ -33,6 +33,7 @@ import com.mcool.sai.installerx.resolver.urimess.impl.DefaultUriMessResolver;
 import com.mcool.sai.model.apksource.ApkSource;
 import com.mcool.sai.utils.Logs;
 import com.mcool.sai.utils.PreferencesHelper;
+import com.mcool.sai.utils.PreferencesValues;
 import com.mcool.sai.utils.SimpleAsyncTask;
 
 import java.io.File;
@@ -171,7 +172,7 @@ public class InstallerXDialogViewModel extends ViewModel {
     }
 
     private void install(ApkSource apkSource) {
-        mInstaller.enqueueSession(mInstaller.createSessionOnInstaller(mPrefsHelper.getInstaller(), new SaiPiSessionParams(apkSource)));
+        mInstaller.enqueueSession(mInstaller.createSessionOnInstaller(PreferencesValues.INSTALLER_ROOTLESS, new SaiPiSessionParams(apkSource)));
     }
 
     public enum State {

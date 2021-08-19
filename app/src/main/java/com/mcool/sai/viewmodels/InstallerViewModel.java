@@ -16,6 +16,7 @@ import com.mcool.sai.installer2.impl.FlexSaiPackageInstaller;
 import com.mcool.sai.model.apksource.ApkSource;
 import com.mcool.sai.utils.Event2;
 import com.mcool.sai.utils.PreferencesHelper;
+import com.mcool.sai.utils.PreferencesValues;
 
 import java.io.File;
 import java.util.List;
@@ -92,7 +93,7 @@ public class InstallerViewModel extends AndroidViewModel implements SaiPiSession
     }
 
     private void install(ApkSource apkSource) {
-        mInstaller.enqueueSession(mInstaller.createSessionOnInstaller(mPrefsHelper.getInstaller(), new SaiPiSessionParams(apkSource)));
+        mInstaller.enqueueSession(mInstaller.createSessionOnInstaller(PreferencesValues.INSTALLER_ROOTLESS, new SaiPiSessionParams(apkSource)));
     }
 
     @Override

@@ -32,10 +32,6 @@ public class PreferencesHelper {
         return false;
     }
 
-    public int getInstaller() {
-        return PreferencesValues.INSTALLER_ROOTLESS;
-    }
-
     public int getInstallLocation() {
         String rawInstallLocation = mPrefs.getString(PreferencesKeys.INSTALL_LOCATION, "0");
         try {

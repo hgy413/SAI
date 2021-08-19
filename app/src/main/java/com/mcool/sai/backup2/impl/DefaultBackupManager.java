@@ -37,6 +37,7 @@ import com.mcool.sai.installer2.impl.FlexSaiPackageInstaller;
 import com.mcool.sai.model.apksource.ApkSource;
 import com.mcool.sai.model.common.PackageMeta;
 import com.mcool.sai.utils.PreferencesHelper;
+import com.mcool.sai.utils.PreferencesValues;
 import com.mcool.sai.utils.Stopwatch;
 import com.mcool.sai.utils.Utils;
 
@@ -176,7 +177,7 @@ public class DefaultBackupManager implements BackupManager, BackupStorage.Observ
     public void restoreBackup(Uri backupUri) {
         mMiscExecutor.execute(() -> {
             ApkSource apkSource = mStorage.createApkSource(backupUri);
-            mInstaller.enqueueSession(mInstaller.createSessionOnInstaller(mPrefsHelper.getInstaller(), new SaiPiSessionParams(apkSource)));
+            mInstaller.enqueueSession(mInstaller.createSessionOnInstaller(PreferencesValues.INSTALLER_ROOTLESS, new SaiPiSessionParams(apkSource)));
         });
     }
 
