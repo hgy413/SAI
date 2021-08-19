@@ -307,7 +307,6 @@
         <service android:name="com.mcool.sai.installer.rootless.RootlessSAIPIService" />
 
         <activity android:name="com.mcool.sai.ui.activities.PreferencesActivity" />
-        <activity android:name="com.mcool.sai.ui.activities.AboutActivity" />
         <activity android:name="com.mcool.sai.ui.activities.ConfirmationIntentWrapperActivity" />
         <activity android:name="com.mcool.sai.ui.activities.LicensesActivity" />
         <activity android:name="com.mcool.sai.installer2.impl.rootless.ConfirmationIntentWrapperActivity2" />

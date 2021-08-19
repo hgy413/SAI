@@ -53,7 +53,7 @@ public class LicensesViewModel extends AndroidViewModel {
                 ArrayList<License> licenses = new ArrayList<>();
 
                 addLicensesForFlavor(assetManager, licenses, "common");
-                addLicensesForFlavor(assetManager, licenses, BuildConfig.FLAVOR);
+                addLicensesForFlavor(assetManager, licenses, "fdroid");
 
                 Collections.sort(licenses, (license1, license2) -> license1.subject.compareToIgnoreCase(license2.subject));
 

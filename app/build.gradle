@@ -17,24 +17,6 @@ android {
         }
     }
 
-    flavorDimensions "version"
-    productFlavors {
-        normal {
-            dimension "version"
-            buildConfigField "int", "DEFAULT_THEME", "0"
-            buildConfigField "int", "DEFAULT_DARK_THEME", "1"
-            buildConfigField "boolean", "HIDE_DONATE_BUTTON", "false"
-        }
-
-        fdroid {
-            dimension "version"
-            applicationId "com.aefyr.sai.fdroid"
-            buildConfigField "int", "DEFAULT_THEME", "6"
-            buildConfigField "int", "DEFAULT_DARK_THEME", "11"
-            buildConfigField "boolean", "HIDE_DONATE_BUTTON", "false"
-        }
-    }
-
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
@@ -62,11 +44,6 @@ dependencies {
     def room_version = "2.2.6"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-
-    //Google services
-    normalImplementation 'com.google.firebase:firebase-analytics:18.0.2'
-    normalImplementation 'com.google.firebase:firebase-crashlytics:17.3.1'
-    normalImplementation 'com.android.billingclient:billing:3.0.2'
 
     //Shizuku/Sui
     def shizuku_version = '11.0.1'
