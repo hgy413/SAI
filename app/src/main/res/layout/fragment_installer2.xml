@@ -12,23 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:elevation="0dp"
-        app:title="@string/app_name_full">
+        android:elevation="0dp">
 
-        <ImageButton
-            android:id="@+id/ib_help"
-            style="@style/SAICoolbarImageButton"
-            android:contentDescription="@string/help"
-            app:coolbar_gravity="start"
-            app:srcCompat="@drawable/ic_help"
-            tools:ignore="MissingPrefix" />
-
-        <ImageButton
-            android:id="@+id/ib_toggle_theme"
-            style="@style/SAICoolbarImageButton"
-            android:contentDescription="@string/installer_select_theme"
-            android:rotation="30"
-            app:srcCompat="@drawable/ic_dark_theme" />
     </com.mcool.sai.view.coolbar.Coolbar>
 
     <androidx.recyclerview.widget.RecyclerView
