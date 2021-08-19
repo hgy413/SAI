@@ -285,30 +285,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.mcool.sai.ui.activities.ApkActionViewProxyActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="*"
-                    android:mimeType="application/vnd.android.package-archive"
-                    android:scheme="file" />
-
-                <data
-                    android:host="*"
-                    android:mimeType="application/vnd.android.package-archive"
-                    android:scheme="content" />
-            </intent-filter>
-        </activity>
-
         <service android:name="com.mcool.sai.installer.rootless.RootlessSAIPIService" />
 
         <activity android:name="com.mcool.sai.ui.activities.PreferencesActivity" />
         <activity android:name="com.mcool.sai.ui.activities.ConfirmationIntentWrapperActivity" />
-        <activity android:name="com.mcool.sai.ui.activities.LicensesActivity" />
         <activity android:name="com.mcool.sai.installer2.impl.rootless.ConfirmationIntentWrapperActivity2" />
 
 
