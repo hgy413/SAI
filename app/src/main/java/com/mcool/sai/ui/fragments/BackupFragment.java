@@ -32,9 +32,6 @@ import com.mcool.sai.backup2.BackupApp;
 import com.mcool.sai.ui.activities.BackupManageAppActivity;
 import com.mcool.sai.ui.activities.BackupSettingsActivity;
 import com.mcool.sai.ui.dialogs.BatchBackupDialogFragment;
-import com.mcool.sai.ui.dialogs.DonationSuggestionDialogFragment;
-import com.mcool.sai.ui.dialogs.OneTimeWarningDialogFragment;
-import com.mcool.sai.ui.dialogs.SimpleAlertDialogFragment;
 import com.mcool.sai.ui.recycler.RecyclerPaddingDecoration;
 import com.mcool.sai.utils.MathUtils;
 import com.mcool.sai.utils.PreferencesHelper;
@@ -350,6 +347,5 @@ public class BackupFragment extends SaiBaseFragment implements BackupPackagesAda
     @Override
     public void onBatchBackupEnqueued(@Nullable String dialogTag) {
         mViewModel.getSelection().clear();
-        DonationSuggestionDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager());
     }
 }

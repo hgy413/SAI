@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aefyr.sai.R;
 import com.mcool.sai.adapters.SaiPiSessionsAdapter;
 import com.mcool.sai.ui.dialogs.AppInstalledDialogFragment;
-import com.mcool.sai.ui.dialogs.DonationSuggestionDialogFragment;
 import com.mcool.sai.ui.dialogs.ErrorLogDialogFragment2;
 import com.mcool.sai.ui.dialogs.InstallationConfirmationDialogFragment;
 import com.mcool.sai.ui.dialogs.InstallerXDialogFragment;
@@ -85,9 +84,6 @@ public class Installer2Fragment extends InstallerFragment implements Installatio
             //For some reason this observer gets called after state save on some devices
             if (isStateSaved())
                 return;
-
-            if (event.type().equals(InstallerViewModel.EVENT_PACKAGE_INSTALLED))
-                DonationSuggestionDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager());
 
             if (!mHelper.showInstallerDialogs()) {
                 event.consume();

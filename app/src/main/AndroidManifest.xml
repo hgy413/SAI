@@ -39,7 +39,6 @@
 
         <activity android:name="com.mcool.sai.ui.activities.BackupSettingsActivity" />
         <activity android:name="com.mcool.sai.ui.activities.BackupManageAppActivity" />
-        <activity android:name="com.mcool.sai.ui.activities.DonateActivity" />
         <activity android:name="com.mcool.sai.ui.activities.MiActivity" />
         <activity
             android:name="com.mcool.sai.ui.activities.MainActivity"
