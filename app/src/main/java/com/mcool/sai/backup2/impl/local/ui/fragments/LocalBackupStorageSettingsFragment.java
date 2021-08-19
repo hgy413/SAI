@@ -1,5 +1,7 @@
 package com.mcool.sai.backup2.impl.local.ui.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,12 +17,11 @@ import com.mcool.sai.backup2.impl.local.LocalBackupStorageProvider;
 import com.mcool.sai.backup2.impl.local.prefs.LocalBackupStoragePrefConstants;
 import com.mcool.sai.model.common.PackageMeta;
 import com.mcool.sai.ui.dialogs.NameFormatBuilderDialogFragment;
-import com.mcool.sai.ui.dialogs.UriDirectoryPickerDialogFragment;
 import com.mcool.sai.utils.BackupNameFormat;
 
 import java.util.Objects;
 
-public class LocalBackupStorageSettingsFragment extends PreferenceFragmentCompat implements UriDirectoryPickerDialogFragment.OnDirectoryPickedListener, NameFormatBuilderDialogFragment.OnFormatBuiltListener {
+public class LocalBackupStorageSettingsFragment extends PreferenceFragmentCompat implements NameFormatBuilderDialogFragment.OnFormatBuiltListener {
 
     private Preference mBackupNameFormatPref;
     private Preference mBackupDirPref;
@@ -28,6 +29,7 @@ public class LocalBackupStorageSettingsFragment extends PreferenceFragmentCompat
     private LocalBackupStorageProvider mProvider;
 
     private PackageMeta mDemoMeta;
+    private static final int REQUEST_CODE_SELECT_BACKUP_DIR = 1334;
 
     public static LocalBackupStorageSettingsFragment newInstance() {
         return new LocalBackupStorageSettingsFragment();
@@ -60,7 +62,8 @@ public class LocalBackupStorageSettingsFragment extends PreferenceFragmentCompat
         mBackupDirPref = findPreference(LocalBackupStoragePrefConstants.KEY_BACKUP_DIR_URI);
         updateBackupDirSummary();
         mBackupDirPref.setOnPreferenceClickListener(p -> {
-            UriDirectoryPickerDialogFragment.newInstance(requireContext()).show(getChildFragmentManager(), "backup_dir");
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.installer_pick_apks)), REQUEST_CODE_SELECT_BACKUP_DIR);
             return true;
         });
     }
@@ -74,15 +77,19 @@ public class LocalBackupStorageSettingsFragment extends PreferenceFragmentCompat
     }
 
     @Override
-    public void onDirectoryPicked(@Nullable String tag, Uri dirUri) {
-        if (tag == null)
-            return;
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        switch (tag) {
-            case "backup_dir":
-                mProvider.setBackupDirUri(dirUri);
-                updateBackupDirSummary();
-                break;
+        if (requestCode == REQUEST_CODE_SELECT_BACKUP_DIR) {
+            if (resultCode != Activity.RESULT_OK)
+                return;
+
+            Objects.requireNonNull(data);
+            Uri backupDirUri = Objects.requireNonNull(data.getData());
+            requireContext().getContentResolver().takePersistableUriPermission(backupDirUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+            mProvider.setBackupDirUri(backupDirUri);
+            updateBackupDirSummary();
         }
     }
 
