@@ -1,5 +1,7 @@
 package com.mcool.sai.backup2.impl.local.ui.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +13,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.aefyr.sai.R;
 import com.mcool.sai.backup2.impl.local.ui.viewmodels.LocalBackupStorageSetupViewModel;
-import com.mcool.sai.ui.dialogs.UriDirectoryPickerDialogFragment;
 import com.mcool.sai.ui.fragments.SaiBaseFragment;
 
-public class LocalBackupStorageSetupFragment extends SaiBaseFragment implements UriDirectoryPickerDialogFragment.OnDirectoryPickedListener {
+import java.util.Objects;
+
+public class LocalBackupStorageSetupFragment extends SaiBaseFragment {
     private LocalBackupStorageSetupViewModel mViewModel;
+    private static final int REQUEST_CODE_SELECT_BACKUP_DIR = 1334;
 
     @Override
     protected int layoutId() {
@@ -42,19 +46,25 @@ public class LocalBackupStorageSetupFragment extends SaiBaseFragment implements 
         selectDirButton.requestFocus(); //TV fix
     }
 
-    private void selectBackupDir() {
-        UriDirectoryPickerDialogFragment.newInstance(requireContext()).show(getChildFragmentManager(), "backup_dir");
+    private void selectBackupDir() { // 备份 选择目录
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        startActivityForResult(Intent.createChooser(intent, getString(R.string.installer_pick_apks)), REQUEST_CODE_SELECT_BACKUP_DIR);
     }
 
-    @Override
-    public void onDirectoryPicked(@Nullable String tag, Uri dirUri) {
-        if (tag == null)
-            return;
 
-        switch (tag) {
-            case "backup_dir":
-                mViewModel.setBackupDir(dirUri);
-                break;
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_SELECT_BACKUP_DIR) {
+            if (resultCode != Activity.RESULT_OK)
+                return;
+
+            Objects.requireNonNull(data);
+            Uri backupDirUri = Objects.requireNonNull(data.getData());
+            requireContext().getContentResolver().takePersistableUriPermission(backupDirUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+            mViewModel.setBackupDir(backupDirUri);
         }
     }
 }
