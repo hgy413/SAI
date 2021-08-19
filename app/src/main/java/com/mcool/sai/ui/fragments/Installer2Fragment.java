@@ -1,5 +1,8 @@
 package com.mcool.sai.ui.fragments;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -24,13 +27,16 @@ import com.mcool.sai.ui.dialogs.DonationSuggestionDialogFragment;
 import com.mcool.sai.ui.dialogs.ErrorLogDialogFragment2;
 import com.mcool.sai.ui.dialogs.InstallationConfirmationDialogFragment;
 import com.mcool.sai.ui.dialogs.InstallerXDialogFragment;
+import com.mcool.sai.ui.dialogs.SimpleAlertDialogFragment;
 import com.mcool.sai.ui.recycler.RecyclerPaddingDecoration;
 import com.mcool.sai.utils.PreferencesHelper;
 import com.mcool.sai.utils.Utils;
 import com.mcool.sai.utils.saf.SafUtils;
 import com.mcool.sai.viewmodels.InstallerViewModel;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class Installer2Fragment extends InstallerFragment implements InstallationConfirmationDialogFragment.ConfirmationListener, SaiPiSessionsAdapter.ActionDelegate {
@@ -44,6 +50,10 @@ public class Installer2Fragment extends InstallerFragment implements Installatio
     private PreferencesHelper mHelper;
 
     private Uri mPendingActionViewUri;
+
+    private static final String DIALOG_TAG_Q_SAF_WARNING = "q_saf_warning";
+
+    private static final int REQUEST_CODE_GET_FILES = 337;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,12 +112,54 @@ public class Installer2Fragment extends InstallerFragment implements Installatio
         Button installButtton = findViewById(R.id.button_install);
         installButtton.setOnClickListener((v) -> {
             // 总是使用专业模式
-            openInstallerXDialog(null);
+            // openInstallerXDialog(null);
+            pickFilesWithSaf(true); // 直接绕过权限申请
         });
 
         if (mPendingActionViewUri != null) {
             handleActionView(mPendingActionViewUri);
             mPendingActionViewUri = null;
+        }
+    }
+
+    private void pickFilesWithSaf(boolean ignorePermissions) {
+        if (Utils.apiIsAtLeast(30) && !ignorePermissions) {
+            if (requireContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                SimpleAlertDialogFragment.newInstance(requireContext(), R.string.warning, R.string.installerx_thank_you_scoped_storage_very_cool).show(getChildFragmentManager(), DIALOG_TAG_Q_SAF_WARNING);
+                return;
+            }
+        }
+
+        Intent getContentIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getContentIntent.setType("*/*");
+        getContentIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        getContentIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+        getContentIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(Intent.createChooser(getContentIntent, getString(R.string.installer_pick_apks)), REQUEST_CODE_GET_FILES);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_GET_FILES) {
+            if (resultCode != Activity.RESULT_OK || data == null)
+                return;
+
+            if (data.getData() != null) {
+                openInstallerXDialog(Collections.singletonList(data.getData()));
+                return;
+            }
+
+            if (data.getClipData() != null) {
+                ClipData clipData = data.getClipData();
+                List<Uri> apkUris = new ArrayList<>(clipData.getItemCount());
+
+                for (int i = 0; i < clipData.getItemCount(); i++)
+                    apkUris.add(clipData.getItemAt(i).getUri());
+                openInstallerXDialog(apkUris);
+            }
         }
     }
 
@@ -124,7 +176,7 @@ public class Installer2Fragment extends InstallerFragment implements Installatio
         }
 
         if (mHelper.isInstallerXEnabled()) {
-            openInstallerXDialog(uri);
+            openInstallerXDialog(Collections.singletonList(uri));
         } else {
             DialogFragment existingDialog = (DialogFragment) getChildFragmentManager().findFragmentByTag("installation_confirmation_dialog");
             if (existingDialog != null)
@@ -145,7 +197,7 @@ public class Installer2Fragment extends InstallerFragment implements Installatio
         }
     }
 
-    private void openInstallerXDialog(@Nullable Uri apkSourceUri) {
+    private void openInstallerXDialog(@Nullable List<Uri> apkSourceUri) {
         DialogFragment existingDialog = (DialogFragment) getChildFragmentManager().findFragmentByTag("installerx_dialog");
         if (existingDialog != null)
             existingDialog.dismiss();

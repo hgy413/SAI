@@ -43,7 +43,6 @@ import java.util.List;
 public class InstallerXDialogFragment extends BaseBottomSheetDialogFragment implements FilePickerDialogFragment.OnFilesSelectedListener, SimpleAlertDialogFragment.OnDismissListener {
     private static final int REQUEST_CODE_GET_FILES = 337;
 
-    private static final String ARG_APK_SOURCE_URI = "apk_source_uri";
     private static final String ARG_URI_HOST_FACTORY = "uri_host_factory";
 
     private InstallerXDialogViewModel mViewModel;
@@ -55,6 +54,7 @@ public class InstallerXDialogFragment extends BaseBottomSheetDialogFragment impl
     private static final int PICK_WITH_SAF = 1;
 
     private static final String DIALOG_TAG_Q_SAF_WARNING = "q_saf_warning";
+    private static List<Uri> apkSourceUriList = null;
 
     /**
      * Create an instance of InstallerXDialogFragment with given apk source uri and UriHostFactory class.
@@ -65,10 +65,9 @@ public class InstallerXDialogFragment extends BaseBottomSheetDialogFragment impl
      * @param uriHostFactoryClass
      * @return
      */
-    public static InstallerXDialogFragment newInstance(@Nullable Uri apkSourceUri, @Nullable Class<? extends UriHostFactory> uriHostFactoryClass) {
+    public static InstallerXDialogFragment newInstance(@Nullable List<Uri> apkSourceUri, @Nullable Class<? extends UriHostFactory> uriHostFactoryClass) {
         Bundle args = new Bundle();
-        if (apkSourceUri != null)
-            args.putParcelable(ARG_APK_SOURCE_URI, apkSourceUri);
+        apkSourceUriList = apkSourceUri;
 
         if (uriHostFactoryClass != null)
             args.putString(ARG_URI_HOST_FACTORY, uriHostFactoryClass.getCanonicalName());
@@ -102,9 +101,8 @@ public class InstallerXDialogFragment extends BaseBottomSheetDialogFragment impl
         if (args == null)
             return;
 
-        Uri apkSourceUri = args.getParcelable(ARG_APK_SOURCE_URI);
-        if (apkSourceUri != null)
-            mViewModel.setApkSourceUris(Collections.singletonList(apkSourceUri));
+        if (apkSourceUriList != null)
+            mViewModel.setApkSourceUris(apkSourceUriList);
     }
 
     @Nullable
