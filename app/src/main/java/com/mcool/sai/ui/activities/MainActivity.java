@@ -17,7 +17,6 @@ import com.mcool.sai.billing.DefaultBillingManager;
 import com.mcool.sai.ui.fragments.BackupFragment;
 import com.mcool.sai.ui.fragments.Installer2Fragment;
 import com.mcool.sai.ui.fragments.InstallerFragment;
-import com.mcool.sai.ui.fragments.PreferencesFragment;
 import com.mcool.sai.utils.FragmentNavigator;
 import com.mcool.sai.utils.MiuiUtils;
 import com.mcool.sai.utils.PreferencesKeys;
@@ -109,9 +108,6 @@ public class MainActivity extends ThemedActivity implements BottomNavigationView
             case R.id.menu_backup:
                 mFragmentNavigator.switchTo("backup");
                 break;
-            case R.id.menu_settings:
-                mFragmentNavigator.switchTo("settings");
-                break;
         }
 
         return true;
@@ -124,8 +120,6 @@ public class MainActivity extends ThemedActivity implements BottomNavigationView
                 return getInstallerFragment();
             case "backup":
                 return new BackupFragment();
-            case "settings":
-                return new PreferencesFragment();
         }
 
         throw new IllegalArgumentException("Unknown fragment tag: " + tag);

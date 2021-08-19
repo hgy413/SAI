@@ -9,8 +9,4 @@
         android:icon="@drawable/ic_backup"
         android:id="@+id/menu_backup" />
 
-    <item
-        android:title="@string/settings_title"
-        android:icon="@drawable/ic_settings"
-        android:id="@+id/menu_settings" />
 </menu>

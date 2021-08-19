@@ -24,44 +24,16 @@ public class PreferencesHelper {
         return mPrefs;
     }
 
-    public String getHomeDirectory() {
-        return mPrefs.getString(PreferencesKeys.HOME_DIRECTORY, Environment.getExternalStorageDirectory().getAbsolutePath());
-    }
-
-    public void setHomeDirectory(String homeDirectory) {
-        mPrefs.edit().putString(PreferencesKeys.HOME_DIRECTORY, homeDirectory).apply();
-    }
-
-    public int getFilePickerRawSort() {
-        return mPrefs.getInt(PreferencesKeys.FILE_PICKER_SORT_RAW, 0);
-    }
-
-    public void setFilePickerRawSort(int rawSort) {
-        mPrefs.edit().putInt(PreferencesKeys.FILE_PICKER_SORT_RAW, rawSort).apply();
-    }
-
-    public void setFilePickerSortBy(int sortBy) {
-        mPrefs.edit().putInt(PreferencesKeys.FILE_PICKER_SORT_BY, sortBy).apply();
-    }
-
-    public void setFilePickerSortOrder(int sortOrder) {
-        mPrefs.edit().putInt(PreferencesKeys.FILE_PICKER_SORT_ORDER, sortOrder).apply();
-    }
-
     public boolean shouldSignApks() {
-        return mPrefs.getBoolean(PreferencesKeys.SIGN_APKS, false);
-    }
-
-    public void setShouldSignApks(boolean signApks) {
-        mPrefs.edit().putBoolean(PreferencesKeys.SIGN_APKS, signApks).apply();
+        return false;
     }
 
     public boolean shouldExtractArchives() {
-        return mPrefs.getBoolean(PreferencesKeys.EXTRACT_ARCHIVES, false);
+        return false;
     }
 
     public boolean shouldUseZipFileApi() {
-        return mPrefs.getBoolean(PreferencesKeys.USE_ZIPFILE, false);
+        return false;
     }
 
     public void setInstaller(int installer) {
@@ -70,18 +42,6 @@ public class PreferencesHelper {
 
     public int getInstaller() {
         return mPrefs.getInt(PreferencesKeys.INSTALLER, PreferencesValues.INSTALLER_ROOTLESS);
-    }
-
-    public void setBackupFileNameFormat(String format) {
-        mPrefs.edit().putString(PreferencesKeys.BACKUP_FILE_NAME_FORMAT, format).apply();
-    }
-
-    public String getBackupFileNameFormat() {
-        return mPrefs.getString(PreferencesKeys.BACKUP_FILE_NAME_FORMAT, PreferencesValues.BACKUP_FILE_NAME_FORMAT_DEFAULT);
-    }
-
-    public void setInstallLocation(int installLocation) {
-        mPrefs.edit().putString(PreferencesKeys.INSTALL_LOCATION, String.valueOf(installLocation)).apply();
     }
 
     public int getInstallLocation() {
@@ -93,10 +53,6 @@ public class PreferencesHelper {
         }
     }
 
-    public boolean useOldInstaller() {
-        return mPrefs.getBoolean(PreferencesKeys.USE_OLD_INSTALLER, false);
-    }
-
     public boolean showInstallerDialogs() {
         return mPrefs.getBoolean(PreferencesKeys.SHOW_INSTALLER_DIALOGS, true);
     }
@@ -105,28 +61,12 @@ public class PreferencesHelper {
         return mPrefs.getBoolean(PreferencesKeys.SHOW_APP_FEATURES, true);
     }
 
-    public boolean shouldShowSafTip() {
-        return !mPrefs.getBoolean(PreferencesKeys.SAF_TIP_SHOWN, false);
-    }
-
-    public void setSafTipShown() {
-        mPrefs.edit().putBoolean(PreferencesKeys.SAF_TIP_SHOWN, true).apply();
-    }
-
     public boolean isInstallerXEnabled() {
         return mPrefs.getBoolean(PreferencesKeys.USE_INSTALLERX, true);
     }
 
     public boolean isBruteParserEnabled() {
         return mPrefs.getBoolean(PreferencesKeys.USE_BRUTE_PARSER, true);
-    }
-
-    public boolean isAnalyticsEnabled() {
-        return mPrefs.getBoolean(PreferencesKeys.ENABLE_ANALYTICS, true);
-    }
-
-    public void setAnalyticsEnabled(boolean enabled) {
-        mPrefs.edit().putBoolean(PreferencesKeys.ENABLE_ANALYTICS, enabled).apply();
     }
 
     public boolean isInitialIndexingDone() {
@@ -144,5 +84,4 @@ public class PreferencesHelper {
     public void setSingleApkExportEnabled(boolean enabled) {
         mPrefs.edit().putBoolean(PreferencesKeys.BACKUP_APK_EXPORT, enabled).apply();
     }
-
 }
