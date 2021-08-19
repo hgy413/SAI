@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,14 +14,11 @@ import com.aefyr.sai.R;
 import com.mcool.sai.utils.AlertsUtils;
 import com.mcool.sai.utils.PermissionsUtils;
 import com.mcool.sai.utils.Utils;
-import com.github.angads25.filepicker.model.DialogConfigs;
-import com.github.angads25.filepicker.model.DialogProperties;
-
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
-public class UriDirectoryPickerDialogFragment extends SingleChoiceListDialogFragment implements FilePickerDialogFragment.OnFilesSelectedListener {
+public class UriDirectoryPickerDialogFragment extends SingleChoiceListDialogFragment {
     private static final int REQUEST_CODE_SELECT_BACKUP_DIR = 1334;
 
     private FilePickerDialogFragment mPendingFilePicker;
@@ -41,14 +37,6 @@ public class UriDirectoryPickerDialogFragment extends SingleChoiceListDialogFrag
     protected void deliverSelectionResult(String tag, int selectedItemIndex) {
         switch (selectedItemIndex) {
             case 0:
-                DialogProperties properties = new DialogProperties();
-                properties.selection_mode = DialogConfigs.SINGLE_MODE;
-                properties.selection_type = DialogConfigs.DIR_SELECT;
-                properties.root = Environment.getExternalStorageDirectory();
-
-                openFilePicker(FilePickerDialogFragment.newInstance("backup_dir", getString(R.string.settings_main_pick_dir), properties));
-                break;
-            case 1:
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
                 startActivityForResult(Intent.createChooser(intent, getString(R.string.installer_pick_apks)), REQUEST_CODE_SELECT_BACKUP_DIR);
                 break;
@@ -101,18 +89,6 @@ public class UriDirectoryPickerDialogFragment extends SingleChoiceListDialogFrag
             listener.onDirectoryPicked(getTag(), dirUri);
 
         dismiss();
-    }
-
-    @Override
-    public void onFilesSelected(String tag, List<File> files) {
-        switch (tag) {
-            case "backup_dir":
-                onDirectoryPicked(new Uri.Builder()
-                        .scheme("file")
-                        .path(files.get(0).getAbsolutePath())
-                        .build());
-                break;
-        }
     }
 
     public interface OnDirectoryPickedListener {
