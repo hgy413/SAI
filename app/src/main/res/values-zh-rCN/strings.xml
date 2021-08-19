@@ -175,7 +175,7 @@
     <string name="backup_component_apk_files">APK 文件</string>
     <string name="backup_component_unknown">类型为 \"%s 的未知组件</string>
     <string name="backup_lbs_provider_name">本地存储</string>
-    <string name="backup_lbs_warning_no_dir">请选择一个目录来存储备份。在选定目录中以MCool 3.10+导出的apks文件将被索引为备份。MCool 4.0版本之前的备份的默认目录是内部存储&gt;MCool</string>
+    <string name="backup_lbs_warning_no_dir">请选择一个目录来存储备份。在选定目录中以MCool导出的apks文件将被索引为备份。</string>
     <string name="backup_lbs_select_dir">选择目录</string>
     <string name="backup_lbs_current_dir">当前备份目录： %s\n\n注意：MCool 将只显示当前选中目录的备份。</string>
     <string name="backup_settings">备份设置</string>

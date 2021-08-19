@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 
 import com.mcool.sai.model.apksource.ApkSource;
-import com.mcool.sai.model.apksource.CopyToFileApkSource;
 import com.mcool.sai.model.apksource.DefaultApkSource;
 import com.mcool.sai.model.apksource.FilterApkSource;
 import com.mcool.sai.model.apksource.SignerApkSource;
@@ -31,7 +30,6 @@ public class ApkSourceBuilder {
     private List<Uri> mApkUris;
 
     private boolean mSigningEnabled;
-    private boolean mZipExtractionEnabled;
     private boolean mReadZipViaZipFileEnabled;
 
     private Set<String> mFilteredApks;
@@ -70,11 +68,6 @@ public class ApkSourceBuilder {
         return this;
     }
 
-    public ApkSourceBuilder setZipExtractionEnabled(boolean enabled) {
-        mZipExtractionEnabled = enabled;
-        return this;
-    }
-
     public ApkSourceBuilder setReadZipViaZipFileEnabled(boolean enabled) {
         mReadZipViaZipFileEnabled = enabled;
         return this;
@@ -88,8 +81,6 @@ public class ApkSourceBuilder {
 
     public ApkSource build() {
         ApkSource apkSource;
-
-        boolean sourceIsZip = false;
 
         if (mApkFiles != null) {
             List<FileDescriptor> apkFileDescriptors = new ArrayList<>(mApkFiles.size());
@@ -105,7 +96,6 @@ public class ApkSourceBuilder {
                 zipBackedApkSource = new ZipApkSource(mContext, new NormalFileDescriptor(mZipFile));
 
             apkSource = zipBackedApkSource;
-            sourceIsZip = true;
         } else if (mZipUri != null) {
             ZipBackedApkSource zipBackedApkSource;
             if (mReadZipViaZipFileEnabled)
@@ -114,7 +104,6 @@ public class ApkSourceBuilder {
                 zipBackedApkSource = new ZipApkSource(mContext, new ContentUriFileDescriptor(mContext, mZipUri));
 
             apkSource = zipBackedApkSource;
-            sourceIsZip = true;
         } else if (mApkUris != null) {
             List<FileDescriptor> apkUriDescriptors = new ArrayList<>(mApkUris.size());
             for (Uri apkUri : mApkUris)
@@ -127,11 +116,6 @@ public class ApkSourceBuilder {
 
         if (mSigningEnabled)
             apkSource = new SignerApkSource(mContext, apkSource);
-
-        //Signing already uses temp files, so there's not reason to use CopyToFileApkSource with it
-        if (mZipExtractionEnabled && sourceIsZip && !mSigningEnabled) {
-            apkSource = new CopyToFileApkSource(mContext, apkSource);
-        }
 
         if (mFilteredApks != null)
             apkSource = new FilterApkSource(apkSource, mFilteredApks, mBlacklist);

@@ -28,20 +28,12 @@ public class PreferencesHelper {
         return false;
     }
 
-    public boolean shouldExtractArchives() {
-        return false;
-    }
-
     public boolean shouldUseZipFileApi() {
         return false;
     }
 
-    public void setInstaller(int installer) {
-        mPrefs.edit().putInt(PreferencesKeys.INSTALLER, installer).apply();
-    }
-
     public int getInstaller() {
-        return mPrefs.getInt(PreferencesKeys.INSTALLER, PreferencesValues.INSTALLER_ROOTLESS);
+        return PreferencesValues.INSTALLER_ROOTLESS;
     }
 
     public int getInstallLocation() {
@@ -54,15 +46,15 @@ public class PreferencesHelper {
     }
 
     public boolean showInstallerDialogs() {
-        return mPrefs.getBoolean(PreferencesKeys.SHOW_INSTALLER_DIALOGS, true);
+        return true;
     }
 
     public boolean shouldShowAppFeatures() {
-        return mPrefs.getBoolean(PreferencesKeys.SHOW_APP_FEATURES, true);
+        return true;
     }
 
     public boolean isInstallerXEnabled() {
-        return mPrefs.getBoolean(PreferencesKeys.USE_INSTALLERX, true);
+        return true;
     }
 
     public boolean isBruteParserEnabled() {

@@ -182,7 +182,7 @@
     <string name="backup_component_apk_files">APK Files</string>
     <string name="backup_component_unknown">Unknown component with type \"%s\"</string>
     <string name="backup_lbs_provider_name">Local storage</string>
-    <string name="backup_lbs_warning_no_dir">Please select a directory to store backups. .apks files exported with MCool 3.10+ in the selected directory will be indexed as backups. Default directory for backups prior to MCool 4.0 used to be Internal Storage > MCool</string>
+    <string name="backup_lbs_warning_no_dir">Please select a directory to store backups.apks files exported with MCool in the selected directory will be indexed as backups.</string>
     <string name="backup_lbs_select_dir">Select directory</string>
     <string name="backup_lbs_current_dir">Current backups directory: %s\n\nNote: MCool will only show backups from the currently selected directory.</string>
     <string name="backup_settings">Backup settings</string>

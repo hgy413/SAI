@@ -136,7 +136,7 @@ public class InstallerXDialogViewModel extends ViewModel {
             }
 
             if (apkSourceBuilder != null) {
-                apkSourceBuilder.setZipExtractionEnabled(mPrefsHelper.shouldExtractArchives())
+                apkSourceBuilder
                         .setReadZipViaZipFileEnabled(mPrefsHelper.shouldUseZipFileApi())
                         .setSigningEnabled(mPrefsHelper.shouldSignApks());
 
@@ -158,7 +158,7 @@ public class InstallerXDialogViewModel extends ViewModel {
         }
 
         if (apkSourceBuilder != null) {
-            apkSourceBuilder.setZipExtractionEnabled(mPrefsHelper.shouldExtractArchives())
+            apkSourceBuilder
                     .setReadZipViaZipFileEnabled(mPrefsHelper.shouldUseZipFileApi())
                     .setSigningEnabled(mPrefsHelper.shouldSignApks());
 

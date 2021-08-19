@@ -69,7 +69,6 @@ public class LegacyInstallerViewModel extends AndroidViewModel implements SAIPac
 
         ApkSource apkSource = new ApkSourceBuilder(mContext)
                 .fromZipFile(zipWithApkFiles)
-                .setZipExtractionEnabled(mPrefsHelper.shouldExtractArchives())
                 .setSigningEnabled(mPrefsHelper.shouldSignApks())
                 .build();
 
@@ -82,7 +81,6 @@ public class LegacyInstallerViewModel extends AndroidViewModel implements SAIPac
 
         ApkSource apkSource = new ApkSourceBuilder(mContext)
                 .fromZipContentUri(zipContentUri)
-                .setZipExtractionEnabled(mPrefsHelper.shouldExtractArchives())
                 .setSigningEnabled(mPrefsHelper.shouldSignApks())
                 .build();
 
