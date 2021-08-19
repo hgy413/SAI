@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.aefyr.sai.com.mcool.sai.ui.activities.BackupManageAppActivity">
+    tools:context="mcool.sai.ui.activities.BackupManageAppActivity">
 
     <com.mcool.sai.view.coolbar.Coolbar
         android:id="@+id/coolbar_backup_manage_app"
