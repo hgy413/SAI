@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mcool.sai.utils.Theme;
-
 @SuppressLint("Registered") //This is only a base class for other activities
 public class ThemedActivity extends AppCompatActivity {
 

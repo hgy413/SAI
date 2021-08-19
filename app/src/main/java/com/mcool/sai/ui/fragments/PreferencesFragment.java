@@ -31,7 +31,6 @@ import com.mcool.sai.utils.PermissionsUtils;
 import com.mcool.sai.utils.PreferencesHelper;
 import com.mcool.sai.utils.PreferencesKeys;
 import com.mcool.sai.utils.PreferencesValues;
-import com.mcool.sai.utils.Theme;
 import com.mcool.sai.utils.Utils;
 
 import java.util.Objects;
@@ -58,7 +57,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Sin
         //Inject current auto theme status since it isn't managed by PreferencesKeys.AUTO_THEME key
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
         SharedPreferences.Editor prefsEditor = prefs.edit();
-        prefsEditor.putBoolean(PreferencesKeys.AUTO_THEME, Theme.getInstance(requireContext()).getThemeMode() == Theme.Mode.AUTO_LIGHT_DARK).apply();
 
         //Inject apk proxy activity state since there's no guarantee preference value matches actual state
         int apkProxyActivityState = mPm.getComponentEnabledSetting(ApkActionViewProxyActivity.getComponentName(requireContext()));
