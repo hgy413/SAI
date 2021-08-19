@@ -4,6 +4,6 @@
     android:id="@+id/mi_fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.aefyr.sai.ui.activities.MiActivity">
+    tools:context="com.aefyr.sai.com.mcool.sai.ui.activities.MiActivity">
 
 </androidx.fragment.app.FragmentContainerView>

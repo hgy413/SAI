@@ -37,12 +37,12 @@
         android:theme="@style/AppTheme.Light"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".ui.activities.BackupSettingsActivity" />
-        <activity android:name=".ui.activities.BackupManageAppActivity" />
-        <activity android:name=".ui.activities.DonateActivity" />
-        <activity android:name=".ui.activities.MiActivity" />
+        <activity android:name="com.mcool.sai.ui.activities.BackupSettingsActivity" />
+        <activity android:name="com.mcool.sai.ui.activities.BackupManageAppActivity" />
+        <activity android:name="com.mcool.sai.ui.activities.DonateActivity" />
+        <activity android:name="com.mcool.sai.ui.activities.MiActivity" />
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name="com.mcool.sai.ui.activities.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -285,7 +285,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activities.ApkActionViewProxyActivity">
+        <activity android:name="com.mcool.sai.ui.activities.ApkActionViewProxyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -304,16 +304,16 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".installer.rootless.RootlessSAIPIService" />
+        <service android:name="com.mcool.sai.installer.rootless.RootlessSAIPIService" />
 
-        <activity android:name=".ui.activities.PreferencesActivity" />
-        <activity android:name=".ui.activities.AboutActivity" />
-        <activity android:name=".ui.activities.ConfirmationIntentWrapperActivity" />
-        <activity android:name=".ui.activities.LicensesActivity" />
-        <activity android:name=".installer2.impl.rootless.ConfirmationIntentWrapperActivity2" />
+        <activity android:name="com.mcool.sai.ui.activities.PreferencesActivity" />
+        <activity android:name="com.mcool.sai.ui.activities.AboutActivity" />
+        <activity android:name="com.mcool.sai.ui.activities.ConfirmationIntentWrapperActivity" />
+        <activity android:name="com.mcool.sai.ui.activities.LicensesActivity" />
+        <activity android:name="com.mcool.sai.installer2.impl.rootless.ConfirmationIntentWrapperActivity2" />
 
 
-        <service android:name=".backup2.impl.BackupService2" />
+        <service android:name="com.mcool.sai.backup2.impl.BackupService2" />
 
         <provider
             android:name="rikka.shizuku.ShizukuProvider"
@@ -324,13 +324,13 @@
             android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
         <provider
-            android:name=".shizuku.SuiInitProvider"
+            android:name="com.mcool.sai.shizuku.SuiInitProvider"
             android:authorities="${applicationId}.shizuku.sui.init"
             android:enabled="true"
             android:exported="false" />
 
         <provider
-            android:name=".flavor.FlavorInitProvider"
+            android:name="com.mcool.sai.flavor.FlavorInitProvider"
             android:authorities="${applicationId}.flavor.init"
             android:enabled="true"
             android:exported="false" />

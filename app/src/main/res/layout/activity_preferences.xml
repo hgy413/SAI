@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.PreferencesActivity">
+    tools:context="com.mcool.sai.ui.activities.PreferencesActivity">
 
     <FrameLayout
         android:id="@+id/container"
@@ -14,7 +14,7 @@
 
     </FrameLayout>
 
-    <com.aefyr.sai.view.coolbar.Coolbar
+    <com.mcool.sai.view.coolbar.Coolbar
         android:id="@+id/coolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

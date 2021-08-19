@@ -71,7 +71,7 @@
 
         </LinearLayout>
 
-        <com.aefyr.sai.view.NonInteractiveRecyclerView
+        <com.mcool.sai.view.NonInteractiveRecyclerView
             android:id="@+id/rv_backup_app_features"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
