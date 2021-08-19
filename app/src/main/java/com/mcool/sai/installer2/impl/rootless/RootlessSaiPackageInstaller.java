@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -81,7 +82,7 @@ public class RootlessSaiPackageInstaller extends BaseSaiPackageInstaller impleme
             setSessionState(sessionId, new SaiPiSessionState.Builder(sessionId, SaiPiSessionStatus.INSTALLING).appTempName(appTempName).build());
 
             PackageInstaller.SessionParams sessionParams = new PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL);
-            sessionParams.setInstallLocation(PreferencesHelper.getInstance(getContext()).getInstallLocation());
+            sessionParams.setInstallLocation(PackageInfo.INSTALL_LOCATION_AUTO); // 安装路径由系统选择
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 sessionParams.setInstallReason(PackageManager.INSTALL_REASON_USER);
 
