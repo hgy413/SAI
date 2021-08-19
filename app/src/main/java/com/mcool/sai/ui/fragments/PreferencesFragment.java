@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -26,7 +25,6 @@ import com.mcool.sai.ui.activities.ApkActionViewProxyActivity;
 import com.mcool.sai.ui.activities.BackupSettingsActivity;
 import com.mcool.sai.ui.activities.DonateActivity;
 import com.mcool.sai.ui.dialogs.DarkLightThemeSelectionDialogFragment;
-import com.mcool.sai.ui.dialogs.FilePickerDialogFragment;
 import com.mcool.sai.ui.dialogs.SimpleAlertDialogFragment;
 import com.mcool.sai.ui.dialogs.SingleChoiceListDialogFragment;
 import com.mcool.sai.ui.dialogs.ThemeSelectionDialogFragment;
@@ -38,16 +36,12 @@ import com.mcool.sai.utils.PreferencesKeys;
 import com.mcool.sai.utils.PreferencesValues;
 import com.mcool.sai.utils.Theme;
 import com.mcool.sai.utils.Utils;
-import com.github.angads25.filepicker.model.DialogConfigs;
-import com.github.angads25.filepicker.model.DialogProperties;
 
-import java.io.File;
-import java.util.List;
 import java.util.Objects;
 
 import rikka.shizuku.Shizuku;
 
-public class PreferencesFragment extends PreferenceFragmentCompat implements FilePickerDialogFragment.OnFilesSelectedListener, SingleChoiceListDialogFragment.OnItemSelectedListener, BaseBottomSheetDialogFragment.OnDismissListener, SharedPreferences.OnSharedPreferenceChangeListener, DarkLightThemeSelectionDialogFragment.OnDarkLightThemesChosenListener, Shizuku.OnRequestPermissionResultListener {
+public class PreferencesFragment extends PreferenceFragmentCompat implements SingleChoiceListDialogFragment.OnItemSelectedListener, BaseBottomSheetDialogFragment.OnDismissListener, SharedPreferences.OnSharedPreferenceChangeListener, DarkLightThemeSelectionDialogFragment.OnDarkLightThemesChosenListener, Shizuku.OnRequestPermissionResultListener {
 
     private PreferencesHelper mHelper;
     private AnalyticsProvider mAnalyticsProvider;
@@ -59,8 +53,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Fil
     private Preference mThemePref;
     private SwitchPreference mAutoThemeSwitch;
     private Preference mAutoThemePicker;
-
-    private FilePickerDialogFragment mPendingFilePicker;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,7 +102,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Fil
         mHomeDirPref = findPreference("home_directory");
         updateHomeDirPrefSummary();
         mHomeDirPref.setOnPreferenceClickListener((p) -> {
-            selectHomeDir();
             return true;
         });
 
@@ -210,23 +201,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Fil
         setDividerHeight(0);
     }
 
-    private void openFilePicker(FilePickerDialogFragment filePicker) {
-        if (!PermissionsUtils.checkAndRequestStoragePermissions(this)) {
-            mPendingFilePicker = filePicker;
-            return;
-        }
-        filePicker.show(Objects.requireNonNull(getChildFragmentManager()), null);
-    }
-
-    private void selectHomeDir() {
-        DialogProperties properties = new DialogProperties();
-        properties.selection_mode = DialogConfigs.SINGLE_MODE;
-        properties.selection_type = DialogConfigs.DIR_SELECT;
-        properties.root = Environment.getExternalStorageDirectory();
-
-        openFilePicker(FilePickerDialogFragment.newInstance("home", getString(R.string.settings_main_pick_dir), properties));
-    }
-
     private void updateHomeDirPrefSummary() {
         mHomeDirPref.setSummary(getString(R.string.settings_main_home_directory_summary, mHelper.getHomeDirectory()));
     }
@@ -256,10 +230,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Fil
             if (grantResults.length == 0 || grantResults[0] == PackageManager.PERMISSION_DENIED)
                 AlertsUtils.showAlert(this, R.string.error, R.string.permissions_required_storage);
             else {
-                if (mPendingFilePicker != null) {
-                    openFilePicker(mPendingFilePicker);
-                    mPendingFilePicker = null;
-                }
             }
         }
 
@@ -274,47 +244,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Fil
     }
 
     @Override
-    public void onFilesSelected(String tag, List<File> files) {
-        switch (tag) {
-            case "home":
-                mHelper.setHomeDirectory(files.get(0).getAbsolutePath());
-                updateHomeDirPrefSummary();
-                break;
-        }
-    }
-
-    @Override
     public void onItemSelected(String dialogTag, int selectedItemIndex) {
         switch (dialogTag) {
             case "sort":
-                mHelper.setFilePickerRawSort(selectedItemIndex);
-                switch (selectedItemIndex) {
-                    case 0:
-                        mHelper.setFilePickerSortBy(DialogConfigs.SORT_BY_NAME);
-                        mHelper.setFilePickerSortOrder(DialogConfigs.SORT_ORDER_NORMAL);
-                        break;
-                    case 1:
-                        mHelper.setFilePickerSortBy(DialogConfigs.SORT_BY_NAME);
-                        mHelper.setFilePickerSortOrder(DialogConfigs.SORT_ORDER_REVERSE);
-                        break;
-                    case 2:
-                        mHelper.setFilePickerSortBy(DialogConfigs.SORT_BY_LAST_MODIFIED);
-                        mHelper.setFilePickerSortOrder(DialogConfigs.SORT_ORDER_NORMAL);
-                        break;
-                    case 3:
-                        mHelper.setFilePickerSortBy(DialogConfigs.SORT_BY_LAST_MODIFIED);
-                        mHelper.setFilePickerSortOrder(DialogConfigs.SORT_ORDER_REVERSE);
-                        break;
-                    case 4:
-                        mHelper.setFilePickerSortBy(DialogConfigs.SORT_BY_SIZE);
-                        mHelper.setFilePickerSortOrder(DialogConfigs.SORT_ORDER_REVERSE);
-                        break;
-                    case 5:
-                        mHelper.setFilePickerSortBy(DialogConfigs.SORT_BY_SIZE);
-                        mHelper.setFilePickerSortOrder(DialogConfigs.SORT_ORDER_NORMAL);
-                        break;
-                }
-                updateFilePickerSortSummary();
                 break;
             case "installer":
                 boolean installerSet = false;

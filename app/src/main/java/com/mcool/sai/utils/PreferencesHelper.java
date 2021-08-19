@@ -6,8 +6,6 @@ import android.os.Environment;
 
 import androidx.preference.PreferenceManager;
 
-import com.github.angads25.filepicker.model.DialogConfigs;
-
 public class PreferencesHelper {
     private static PreferencesHelper sInstance;
 
@@ -42,16 +40,8 @@ public class PreferencesHelper {
         mPrefs.edit().putInt(PreferencesKeys.FILE_PICKER_SORT_RAW, rawSort).apply();
     }
 
-    public int getFilePickerSortBy() {
-        return mPrefs.getInt(PreferencesKeys.FILE_PICKER_SORT_BY, DialogConfigs.SORT_BY_NAME);
-    }
-
     public void setFilePickerSortBy(int sortBy) {
         mPrefs.edit().putInt(PreferencesKeys.FILE_PICKER_SORT_BY, sortBy).apply();
-    }
-
-    public int getFilePickerSortOrder() {
-        return mPrefs.getInt(PreferencesKeys.FILE_PICKER_SORT_ORDER, DialogConfigs.SORT_ORDER_NORMAL);
     }
 
     public void setFilePickerSortOrder(int sortOrder) {

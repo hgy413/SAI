@@ -17,11 +17,9 @@ import com.mcool.sai.billing.DefaultBillingManager;
 import com.mcool.sai.ui.fragments.BackupFragment;
 import com.mcool.sai.ui.fragments.Installer2Fragment;
 import com.mcool.sai.ui.fragments.InstallerFragment;
-import com.mcool.sai.ui.fragments.LegacyInstallerFragment;
 import com.mcool.sai.ui.fragments.PreferencesFragment;
 import com.mcool.sai.utils.FragmentNavigator;
 import com.mcool.sai.utils.MiuiUtils;
-import com.mcool.sai.utils.PreferencesHelper;
 import com.mcool.sai.utils.PreferencesKeys;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -141,7 +139,7 @@ public class MainActivity extends ThemedActivity implements BottomNavigationView
 
     private InstallerFragment getInstallerFragment() {
         if (mInstallerFragment == null)
-            mInstallerFragment = PreferencesHelper.getInstance(this).useOldInstaller() ? new LegacyInstallerFragment() : new Installer2Fragment();
+            mInstallerFragment = new Installer2Fragment();
         return mInstallerFragment;
     }
 
