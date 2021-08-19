@@ -24,10 +24,7 @@ import com.mcool.sai.ui.activities.AboutActivity;
 import com.mcool.sai.ui.activities.ApkActionViewProxyActivity;
 import com.mcool.sai.ui.activities.BackupSettingsActivity;
 import com.mcool.sai.ui.activities.DonateActivity;
-import com.mcool.sai.ui.dialogs.DarkLightThemeSelectionDialogFragment;
-import com.mcool.sai.ui.dialogs.SimpleAlertDialogFragment;
 import com.mcool.sai.ui.dialogs.SingleChoiceListDialogFragment;
-import com.mcool.sai.ui.dialogs.ThemeSelectionDialogFragment;
 import com.mcool.sai.ui.dialogs.base.BaseBottomSheetDialogFragment;
 import com.mcool.sai.utils.AlertsUtils;
 import com.mcool.sai.utils.PermissionsUtils;
@@ -41,7 +38,7 @@ import java.util.Objects;
 
 import rikka.shizuku.Shizuku;
 
-public class PreferencesFragment extends PreferenceFragmentCompat implements SingleChoiceListDialogFragment.OnItemSelectedListener, BaseBottomSheetDialogFragment.OnDismissListener, SharedPreferences.OnSharedPreferenceChangeListener, DarkLightThemeSelectionDialogFragment.OnDarkLightThemesChosenListener, Shizuku.OnRequestPermissionResultListener {
+public class PreferencesFragment extends PreferenceFragmentCompat implements SingleChoiceListDialogFragment.OnItemSelectedListener, BaseBottomSheetDialogFragment.OnDismissListener, SharedPreferences.OnSharedPreferenceChangeListener, Shizuku.OnRequestPermissionResultListener {
 
     private PreferencesHelper mHelper;
     private AnalyticsProvider mAnalyticsProvider;
@@ -50,9 +47,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Sin
     private Preference mHomeDirPref;
     private Preference mFilePickerSortPref;
     private Preference mInstallerPref;
-    private Preference mThemePref;
-    private SwitchPreference mAutoThemeSwitch;
-    private Preference mAutoThemePicker;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,44 +130,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Sin
             return true;
         });
 
-        mThemePref = findPreference(PreferencesKeys.THEME);
-        updateThemeSummary();
-        mThemePref.setOnPreferenceClickListener(p -> {
-            ThemeSelectionDialogFragment.newInstance(requireContext()).show(getChildFragmentManager(), "theme");
-            return true;
-        });
-        if (Theme.getInstance(requireContext()).getThemeMode() != Theme.Mode.CONCRETE) {
-            mThemePref.setVisible(false);
-        }
-
-        mAutoThemeSwitch = Objects.requireNonNull(findPreference(PreferencesKeys.AUTO_THEME));
-        mAutoThemePicker = findPreference(PreferencesKeys.AUTO_THEME_PICKER);
-        updateAutoThemePickerSummary();
-
-        mAutoThemeSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
-            boolean value = (boolean) newValue;
-            if (value) {
-                if (!Utils.apiIsAtLeast(Build.VERSION_CODES.Q))
-                    SimpleAlertDialogFragment.newInstance(requireContext(), R.string.settings_main_auto_theme, R.string.settings_main_auto_theme_pre_q_warning).show(getChildFragmentManager(), null);
-
-                Theme.getInstance(requireContext()).setMode(Theme.Mode.AUTO_LIGHT_DARK);
-            } else {
-                Theme.getInstance(requireContext()).setMode(Theme.Mode.CONCRETE);
-            }
-
-            //Hack to not mess with hiding/showing preferences manually
-            requireActivity().recreate();
-            return true;
-        });
-
-        mAutoThemePicker.setOnPreferenceClickListener(pref -> {
-            DarkLightThemeSelectionDialogFragment.newInstance().show(getChildFragmentManager(), null);
-            return true;
-        });
-
-        if (Theme.getInstance(requireContext()).getThemeMode() != Theme.Mode.AUTO_LIGHT_DARK) {
-            mAutoThemePicker.setVisible(false);
-        }
 
         SwitchPreference analyticsPref = findPreference(PreferencesKeys.ENABLE_ANALYTICS);
         analyticsPref.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -211,15 +167,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Sin
 
     private void updateInstallerSummary() {
         mInstallerPref.setSummary(getString(R.string.settings_main_installer_summary, getResources().getStringArray(R.array.installers)[mHelper.getInstaller()]));
-    }
-
-    private void updateThemeSummary() {
-        mThemePref.setSummary(Theme.getInstance(requireContext()).getConcreteTheme().getName(requireContext()));
-    }
-
-    private void updateAutoThemePickerSummary() {
-        Theme theme = Theme.getInstance(requireContext());
-        mAutoThemePicker.setSummary(getString(R.string.settings_main_auto_theme_picker_summary, theme.getLightTheme().getName(requireContext()), theme.getDarkTheme().getName(requireContext())));
     }
 
     @Override
@@ -294,11 +241,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Sin
 
     @Override
     public void onDialogDismissed(@NonNull String dialogTag) {
-        switch (dialogTag) {
-            case "theme":
-                updateThemeSummary();
-                break;
-        }
+
     }
 
     @Override
@@ -318,13 +261,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Sin
             prefs.edit().putBoolean(PreferencesKeys.USE_OLD_INSTALLER, prefs.getBoolean(PreferencesKeys.USE_OLD_INSTALLER, false)).commit();
             Utils.hardRestartApp(requireContext());
         }
-    }
-
-    @Override
-    public void onThemesChosen(@Nullable String tag, Theme.ThemeDescriptor lightTheme, Theme.ThemeDescriptor darkTheme) {
-        Theme theme = Theme.getInstance(requireContext());
-        theme.setLightTheme(lightTheme);
-        theme.setDarkTheme(darkTheme);
     }
 
     @Override

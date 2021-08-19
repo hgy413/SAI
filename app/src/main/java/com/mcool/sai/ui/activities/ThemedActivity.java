@@ -13,15 +13,8 @@ import com.mcool.sai.utils.Theme;
 @SuppressLint("Registered") //This is only a base class for other activities
 public class ThemedActivity extends AppCompatActivity {
 
-    private Theme.ThemeDescriptor mAppliedTheme;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        mAppliedTheme = Theme.apply(this);
-        Theme.observe(this, this, theme -> {
-            if (!theme.equals(mAppliedTheme))
-                recreate();
-        });
         super.onCreate(savedInstanceState);
     }
 
