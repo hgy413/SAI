@@ -124,11 +124,11 @@ public class BackupPackagesFilterConfig {
         }
     }
 
-    public BackupPackagesFilterConfig(SharedPreferences prefs) {
+    public BackupPackagesFilterConfig(SharedPreferences prefs) { // 这里是备份筛选器的配置
         mSortMode = SortMode.values()[prefs.getInt(FILTER_SORT, 0)];
         mSortAscending = prefs.getBoolean(SORT_ASCENDING, true);
-        mSplitApkFilter = SimpleFilterMode.values()[prefs.getInt(FILTER_SPLIT, 1)];
-        mSystemAppFilter = SimpleFilterMode.values()[prefs.getInt(FILTER_SYSTEM_APP, 0)];
+        mSplitApkFilter = SimpleFilterMode.values()[prefs.getInt(FILTER_SPLIT, 0)];
+        mSystemAppFilter = SimpleFilterMode.values()[prefs.getInt(FILTER_SYSTEM_APP, 2)];
         mBackupStatusFilter = BackupStatusFilterMode.values()[prefs.getInt(FILTER_BACKUP_STATUS, 0)];
     }
 

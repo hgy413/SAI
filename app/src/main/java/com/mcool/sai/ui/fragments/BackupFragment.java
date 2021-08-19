@@ -122,8 +122,6 @@ public class BackupFragment extends SaiBaseFragment implements BackupPackagesAda
 
                     mStorageConfigFragment = null;
                 }
-
-                OneTimeWarningDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager(), R.string.help, R.string.backup_warning, "backup_faq");
             } else {
                 storageConfigOverlay.setVisibility(View.VISIBLE);
 
@@ -184,9 +182,6 @@ public class BackupFragment extends SaiBaseFragment implements BackupPackagesAda
                 switch (menuItem.getItemId()) {
                     case R.id.menu_export_all_split_apks:
                         exportAllSplitApks();
-                        break;
-                    case R.id.menu_backup_help:
-                        SimpleAlertDialogFragment.newInstance(requireContext(), R.string.help, R.string.backup_warning).show(getChildFragmentManager(), null);
                         break;
                     case R.id.menu_backup_reindex:
                         mViewModel.reindexBackups();
