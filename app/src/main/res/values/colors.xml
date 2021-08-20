@@ -1,77 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorNeutralGray">#9e9e9e</color>
-
     <color name="colorCoolBlue">#639eff</color>
     <color name="colorPureWhite">#ffffff</color>
 
     <color name="colorFineGrey">#444444</color>
-    <color name="colorGreatGrey">#3a404a</color>
-    <color name="colorGreaterGrey">#343944</color>
-    <color name="colorAlmostWhite">#e5e5e5</color>
-    <color name="colorPerfectPink">#ffbcbc</color>
-    <color name="colorPrimaryLightRuby">#3a404a</color>
     <color name="colorPrimaryLightSai">#ffffff</color>
-
-    <color name="colorAccentRena">#e52c5f</color>
-    <color name="colorPrimaryRena">#212735</color>
-    <color name="colorPrimaryLightRena">#293042</color>
-    <color name="colorTextPrimaryRena">#f7f4f4</color>
-    <color name="colorTextSecondaryRena">#c9cacb</color>
-
-    <color name="colorAccentRooter">#00ff00</color>
-    <color name="colorPrimaryRooter">#9600ff</color>
-    <color name="colorPrimaryLightRooter">#9600ff</color>
-    <color name="colorTextPrimaryRooter">#00ff00</color>
-    <color name="colorTextSecondaryRooter">#00ff00</color>
-
-    <color name="colorAccentOmelette">#ffffff</color>
-    <color name="colorPrimaryOmelette">#000000</color>
-    <color name="colorPrimaryLightOmelette">#0D0D0D</color>
-    <color name="colorTextPrimaryOmelette">#ffffff</color>
-    <color name="colorTextSecondaryOmelette">#ffffff</color>
-
-    <color name="colorAccentPixel">#448aff</color>
-    <color name="colorPrimaryPixel">#ffffff</color>
-    <color name="colorPrimaryLightPixel">#ffffff</color>
-    <color name="colorTextPrimaryPixel">#de000000</color>
-    <color name="colorTextSecondaryPixel">#de000000</color>
-
-    <color name="colorAccentFDroid">#8bc34a</color>
-    <color name="colorPrimaryFDroid">@color/colorPureWhite</color>
-    <color name="colorPrimaryLightFDroid">@color/colorPureWhite</color>
-    <color name="colorTextPrimaryFDroid">@color/colorFineGrey</color>
-    <color name="colorTextSecondaryFDroid">@color/colorFineGrey</color>
-
-    <color name="colorAccentDark2">#71AAEB</color>
-    <color name="colorPrimaryDark2">#131313</color>
-    <color name="colorPrimaryLightDark2">#1A1A1A</color>
-    <color name="colorTextPrimaryDark2">#ffffff</color>
-    <color name="colorTextSecondaryDark2">#e0e0e0</color>
-
-    <color name="colorAccentGold">#e9b115</color>
-    <color name="colorPrimaryGold">#000d26</color>
-    <color name="colorPrimaryLightGold">#000f2e</color>
-    <color name="colorTextPrimaryGold">#e6e6e6</color>
-    <color name="colorTextSecondaryGold">#d9d9d9</color>
-
-    <color name="colorAccentRenaLight">@color/colorAccentRena</color>
-    <color name="colorPrimaryRenaLight">@color/colorPureWhite</color>
-    <color name="colorPrimaryLightRenaLight">@color/colorPureWhite</color>
-    <color name="colorTextPrimaryRenaLight">@color/colorFineGrey</color>
-    <color name="colorTextSecondaryRenaLight">@color/colorFineGrey</color>
-
-    <color name="colorAccentMint">#86E2B3</color>
-    <color name="colorPrimaryMint">#141F33</color>
-    <color name="colorPrimaryLightMint">#18243B</color>
-    <color name="colorTextPrimaryMint">#CAD7E0</color>
-    <color name="colorTextSecondaryMint">#C3D0D9</color>
-
-    <color name="colorAccentFDroidDark">#8bc34a</color>
-    <color name="colorPrimaryFDroidDark">#1C1D21</color>
-    <color name="colorPrimaryLightFDroidDark">#1F2024</color>
-    <color name="colorTextPrimaryFDroidDark">#EDEDED</color>
-    <color name="colorTextSecondaryFDroidDark">#E6E6E6</color>
 
     <!-- Hack for inactive outline color -->
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">

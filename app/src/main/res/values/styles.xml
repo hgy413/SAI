@@ -17,128 +17,6 @@
         <item name="popupMenuBackgroundTint">?colorPrimaryLight</item>
     </style>
 
-    <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/colorGreaterGrey</item>
-        <item name="colorPrimaryDark">@color/colorGreaterGrey</item>
-        <item name="colorPrimaryLight">@color/colorPrimaryLightRuby</item>
-        <item name="colorAccent">@color/colorPerfectPink</item>
-        <item name="android:windowBackground">@color/colorGreaterGrey</item>
-        <item name="titleTextColor">@color/colorAlmostWhite</item>
-        <item name="android:textColorPrimary">@color/colorFineGrey</item>
-        <item name="android:textColorSecondary">@color/colorAlmostWhite</item>
-        <item name="alertDialogTheme">@style/AlertDialog.AppTheme.Dark</item>
-        <item name="android:textViewStyle">@style/SAITextViewStyle</item>
-        <item name="colorControlActivated">?attr/colorAccent</item>
-        <item name="android:colorControlActivated">?attr/colorAccent</item>
-        <item name="popupMenuStyle">@style/SAIPopupMenu.Dark</item>
-        <item name="popupMenuBackgroundTint">?colorPrimaryLight</item>
-    </style>
-
-    <style name="AppTheme.Simple.Dark" parent="AppTheme.Dark">
-        <item name="colorPrimary">?attr/simpleThemePrimaryColor</item>
-        <item name="colorPrimaryDark">?attr/simpleThemePrimaryColor</item>
-        <item name="colorPrimaryLight">?attr/simpleThemePrimaryLightColor</item>
-        <item name="colorAccent">?attr/simpleThemeAccentColor</item>
-        <item name="android:windowBackground">?attr/simpleThemePrimaryColor</item>
-        <item name="titleTextColor">?attr/simpleThemeTextPrimaryColor</item>
-        <item name="android:textColorPrimary">?attr/simpleThemeTextPrimaryColor</item>
-        <item name="android:textColorSecondary">?attr/simpleThemeTextSecondaryColor</item>
-        <item name="alertDialogTheme">@style/AlertDialog.AppTheme.Simple.Dark</item>
-    </style>
-
-    <style name="AppTheme.Simple.Light" parent="AppTheme.Light">
-        <item name="colorPrimary">?attr/simpleThemePrimaryColor</item>
-        <item name="colorPrimaryDark">?attr/simpleThemePrimaryColor</item>
-        <item name="colorPrimaryLight">?attr/simpleThemePrimaryLightColor</item>
-        <item name="colorAccent">?attr/simpleThemeAccentColor</item>
-        <item name="android:windowBackground">?attr/simpleThemePrimaryColor</item>
-        <item name="titleTextColor">?attr/simpleThemeTextPrimaryColor</item>
-        <item name="android:textColorPrimary">?attr/simpleThemeTextPrimaryColor</item>
-        <item name="android:textColorSecondary">?attr/simpleThemeTextSecondaryColor</item>
-        <item name="alertDialogTheme">@style/AlertDialog.AppTheme.Simple.Light</item>
-    </style>
-
-    <style name="AppTheme.Rena" parent="AppTheme.Simple.Dark">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryRena</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightRena</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentRena</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryRena</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryRena</item>
-    </style>
-
-    <style name="AppTheme.Rooter" parent="AppTheme.Simple.Dark">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryRooter</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightRooter</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentRooter</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryRooter</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryRooter</item>
-    </style>
-
-    <style name="AppTheme.Omelette" parent="AppTheme.Simple.Dark">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryOmelette</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightOmelette</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentOmelette</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryOmelette</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryOmelette</item>
-    </style>
-
-    <style name="AppTheme.Pixel" parent="AppTheme.Simple.Light">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryPixel</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightPixel</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentPixel</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryPixel</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryPixel</item>
-    </style>
-
-    <style name="AppTheme.FDroid" parent="AppTheme.Simple.Light">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryFDroid</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightFDroid</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentFDroid</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryFDroid</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryFDroid</item>
-    </style>
-
-    <style name="AppTheme.Dark2" parent="AppTheme.Simple.Dark">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryDark2</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightDark2</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentDark2</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryDark2</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryDark2</item>
-    </style>
-
-    <style name="AppTheme.Gold" parent="AppTheme.Simple.Dark">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryGold</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightGold</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentGold</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryGold</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryGold</item>
-    </style>
-
-    <style name="AppTheme.RenaLight" parent="AppTheme.Simple.Light">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryRenaLight</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightRenaLight</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentRenaLight</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryRenaLight</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryRenaLight</item>
-    </style>
-
-    <style name="AppTheme.Mint" parent="AppTheme.Simple.Dark">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryMint</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightMint</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentMint</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryMint</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryMint</item>
-    </style>
-
-    <style name="AppTheme.FDroidDark" parent="AppTheme.Simple.Dark">
-        <item name="simpleThemePrimaryColor">@color/colorPrimaryFDroidDark</item>
-        <item name="simpleThemePrimaryLightColor">@color/colorPrimaryLightFDroidDark</item>
-        <item name="simpleThemeAccentColor">@color/colorAccentFDroidDark</item>
-        <item name="simpleThemeTextPrimaryColor">@color/colorTextPrimaryFDroidDark</item>
-        <item name="simpleThemeTextSecondaryColor">@color/colorTextSecondaryFDroidDark</item>
-    </style>
-
-
     <style name="SAIMaterialButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -248,37 +126,11 @@
         <item name="textColorAlertDialogListItem">?android:attr/textColorSecondary</item>
     </style>
 
-    <style name="AlertDialog.AppTheme.Dark" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/bg_rounded_alert_dialog</item>
-        <item name="android:backgroundTint">?attr/colorPrimaryDark</item>
-        <item name="colorPrimary">?attr/colorAccent</item>
-        <item name="textColorAlertDialogListItem">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="AlertDialog.AppTheme.Simple.Light" parent="AlertDialog.AppTheme.Light">
-        <item name="android:textColorPrimary">?attr/simpleThemeTextSecondaryColor</item>
-        <item name="android:textColorSecondary">?attr/simpleThemeTextPrimaryColor</item>
-    </style>
-
-    <style name="AlertDialog.AppTheme.Simple.Dark" parent="AlertDialog.AppTheme.Dark">
-        <item name="android:textColorPrimary">?attr/simpleThemeTextSecondaryColor</item>
-        <item name="android:textColorSecondary">?attr/simpleThemeTextPrimaryColor</item>
-    </style>
 
     <style name="SAIPopupMenu.Light" parent="Widget.AppCompat.Light.PopupMenu">
         <item name="android:popupBackground">@drawable/bg_rounded_popup</item>
     </style>
 
-    <style name="SAIPopupMenu.Dark" parent="Widget.AppCompat.Light.PopupMenu">
-        <item name="android:popupBackground">@drawable/bg_rounded_popup</item>
-    </style>
-
-    <style name="SAIChip.Filter" parent="Widget.MaterialComponents.Chip.Action">
-        <item name="android:checkable">true</item>
-        <item name="chipBackgroundColor">@color/selector_chip_background_color_filter</item>
-        <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="checkedIcon">@drawable/ic_chip_checked</item>
-    </style>
 
     <style name="SAIChip.Selection" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:checkable">true</item>
@@ -288,19 +140,6 @@
         <item name="checkedIconVisible">false</item>
     </style>
 
-    <style name="SAITextInputLayout.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxCornerRadiusBottomEnd">@dimen/textinputlayout_box_corners_radius</item>
-        <item name="boxCornerRadiusBottomStart">@dimen/textinputlayout_box_corners_radius</item>
-        <item name="boxCornerRadiusTopEnd">@dimen/textinputlayout_box_corners_radius</item>
-        <item name="boxCornerRadiusTopStart">@dimen/textinputlayout_box_corners_radius</item>
-        <item name="android:backgroundTint">?attr/colorAccent</item>
-        <item name="boxStrokeColor">?attr/colorAccent</item>
-        <item name="hintTextColor">?attr/colorAccent</item>
-    </style>
-
-    <style name="SAIBottomSheetDialog.Backup" parent="Theme.Design.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/SAIBottomSheetDialogStyle.Backup</item>
-    </style>
 
     <style name="SAIBottomSheetDialog.Backup.Light" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/SAIBottomSheetDialogStyle.Backup</item>
@@ -315,20 +154,4 @@
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
-
-    <style name="SAITooltipTextAppearance" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">?attr/colorPrimary</item>
-    </style>
-
-    <style name="ThemeView.Normal.Interactive" parent="Widget.MaterialComponents.CardView">
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:minHeight">88dp</item>
-        <item name="cardCornerRadius">12dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="cardUseCompatPadding">true</item>
-        <item name="contentPadding">8dp</item>
-        <item name="strokeWidth">2dp</item>
-    </style>
-
 </resources>
