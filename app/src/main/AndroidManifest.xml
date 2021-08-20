@@ -289,11 +289,6 @@
 
         <service android:name="com.mcool.sai.backup2.impl.BackupService2" />
 
-        <provider
-            android:name="com.mcool.sai.flavor.FlavorInitProvider"
-            android:authorities="${applicationId}.flavor.init"
-            android:enabled="true"
-            android:exported="false" />
     </application>
 
 </manifest>
