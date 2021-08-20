@@ -12,8 +12,6 @@ import androidx.preference.PreferenceManager;
 
 import com.aefyr.sai.R;
 import com.mcool.sai.backup2.impl.DefaultBackupManager;
-import com.mcool.sai.billing.BillingManager;
-import com.mcool.sai.billing.DefaultBillingManager;
 import com.mcool.sai.ui.fragments.BackupFragment;
 import com.mcool.sai.ui.fragments.Installer2Fragment;
 import com.mcool.sai.ui.fragments.InstallerFragment;
@@ -32,14 +30,10 @@ public class MainActivity extends ThemedActivity implements BottomNavigationView
 
     private boolean mIsNavigationEnabled = true;
 
-    private BillingManager mBillingManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mBillingManager = DefaultBillingManager.getInstance(this);
 
         //TODO is this ok?
         DefaultBackupManager.getInstance(this);
@@ -87,18 +81,6 @@ public class MainActivity extends ThemedActivity implements BottomNavigationView
         }
     }
 
-    public void setNavigationEnabled(boolean enabled) {
-        mIsNavigationEnabled = enabled;
-
-        for (int i = 0; i < mBottomNavigationView.getMenu().size(); i++) {
-            mBottomNavigationView.getMenu().getItem(i).setEnabled(enabled);
-        }
-        mBottomNavigationView.animate()
-                .alpha(enabled ? 1f : 0.4f)
-                .setDuration(300)
-                .start();
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -140,6 +122,5 @@ public class MainActivity extends ThemedActivity implements BottomNavigationView
     @Override
     protected void onResume() {
         super.onResume();
-        mBillingManager.refresh();
     }
 }
