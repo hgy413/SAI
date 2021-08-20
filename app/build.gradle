@@ -45,11 +45,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    //Shizuku/Sui
-    def shizuku_version = '11.0.1'
-    implementation "rikka.shizuku:api:$shizuku_version"
-    implementation "rikka.shizuku:provider:$shizuku_version"
-
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
 }
 

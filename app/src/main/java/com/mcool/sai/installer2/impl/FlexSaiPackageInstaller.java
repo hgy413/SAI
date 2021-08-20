@@ -7,8 +7,6 @@ import com.mcool.sai.installer2.base.SaiPiSessionObserver;
 import com.mcool.sai.installer2.base.model.SaiPiSessionParams;
 import com.mcool.sai.installer2.base.model.SaiPiSessionState;
 import com.mcool.sai.installer2.impl.rootless.RootlessSaiPackageInstaller;
-import com.mcool.sai.installer2.impl.shell.RootedSaiPackageInstaller;
-import com.mcool.sai.installer2.impl.shell.ShizukuSaiPackageInstaller;
 import com.mcool.sai.utils.PreferencesValues;
 
 import java.util.ArrayList;
@@ -40,8 +38,6 @@ public class FlexSaiPackageInstaller implements SaiPackageInstaller, SaiPiSessio
     private FlexSaiPackageInstaller(Context c) {
         mContext = c.getApplicationContext();
         addInstaller(PreferencesValues.INSTALLER_ROOTLESS, RootlessSaiPackageInstaller.getInstance(mContext));
-        addInstaller(PreferencesValues.INSTALLER_ROOTED, RootedSaiPackageInstaller.getInstance(mContext));
-        addInstaller(PreferencesValues.INSTALLER_SHIZUKU, ShizukuSaiPackageInstaller.getInstance(mContext));
         sInstance = this;
     }
 
