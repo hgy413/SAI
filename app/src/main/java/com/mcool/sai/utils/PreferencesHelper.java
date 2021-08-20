@@ -29,16 +29,7 @@ public class PreferencesHelper {
     }
 
     public boolean shouldUseZipFileApi() {
-        return false;
-    }
-
-    public int getInstallLocation() {
-        String rawInstallLocation = mPrefs.getString(PreferencesKeys.INSTALL_LOCATION, "0");
-        try {
-            return Integer.parseInt(rawInstallLocation);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
+        return true; // 必须为true才支持xapk的安装
     }
 
     public boolean showInstallerDialogs() {
