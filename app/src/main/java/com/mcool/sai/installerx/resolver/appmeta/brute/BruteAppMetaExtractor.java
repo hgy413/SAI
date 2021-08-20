@@ -55,8 +55,8 @@ public class BruteAppMetaExtractor implements AppMetaExtractor {
             if (cachedAppMeta != null)
                 return cachedAppMeta;
 
-            if (!PreferencesHelper.getInstance(mContext).isBruteParserEnabled() || baseApkEntry.getSize() >= 100 * 1000 * 1000) {
-                Log.i(TAG, "Brute parser disabled or base apk entry size is more than 100MBs");
+            if (!PreferencesHelper.getInstance(mContext).isBruteParserEnabled() || baseApkEntry.getSize() >= 200 * 1000 * 1000) {
+                Log.i(TAG, "Brute parser disabled or base apk entry size is more than 200MBs");
                 return null;
             }
 
