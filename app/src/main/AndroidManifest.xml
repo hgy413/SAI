@@ -40,7 +40,7 @@
         <activity android:name="com.mcool.sai.ui.activities.BackupManageAppActivity" />
         <activity android:name="com.mcool.sai.ui.activities.MiActivity" />
         <activity
-            android:name="com.mcool.sai.ui.activities.MainActivity"
+            android:name="com.mcool.sai.ui.activities.SAIActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

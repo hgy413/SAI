@@ -20,7 +20,7 @@ import com.mcool.sai.utils.MiuiUtils;
 import com.mcool.sai.utils.PreferencesKeys;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends ThemedActivity implements BottomNavigationView.OnNavigationItemSelectedListener, FragmentNavigator.FragmentFactory {
+public class SAIActivity extends ThemedActivity implements BottomNavigationView.OnNavigationItemSelectedListener, FragmentNavigator.FragmentFactory {
 
     private BottomNavigationView mBottomNavigationView;
 
@@ -33,7 +33,7 @@ public class MainActivity extends ThemedActivity implements BottomNavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sai);
 
         //TODO is this ok?
         DefaultBackupManager.getInstance(this);

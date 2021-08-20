@@ -27,7 +27,7 @@ public class MiActivity extends ThemedActivity implements MiEntryFragment.OnCont
     @Override
     public void onContinue() {
         PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean(PreferencesKeys.MIUI_WARNING_SHOWN, true).apply();
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, SAIActivity.class));
         finish();
     }
 }
